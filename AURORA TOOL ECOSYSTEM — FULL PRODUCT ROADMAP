@@ -1,0 +1,193 @@
+# AURORA TOOL ECOSYSTEM — FULL PRODUCT ROADMAP
+
+## CORE DOCTRINE
+
+Build ONE private master system.
+
+From that:
+- Extract sellable utility tools
+- Keep intelligence private
+- Reuse modules across products
+
+---
+
+# SYSTEM LAYERS
+
+## L1 — MASTER SYSTEM (PRIVATE ONLY)
+- Full intelligence
+- Portfolio awareness
+- Adaptive logic
+- Prop firm orchestration
+- Hidden execution logic
+
+## L2 — PRIVATE PRO MODULES
+- Advanced tools
+- Potential future premium stripped products
+
+## L3 — PUBLIC UTILITY TOOLS
+- Single-purpose
+- Easy to understand
+- Low support
+- Sellable
+
+## L4 — WRAPPERS / UX
+- Dashboards
+- Panels
+- HUDs
+- Visual tools
+
+---
+
+# TOOL ROADMAP TABLE
+
+| Tool | Category | Purpose | Sellability | Difficulty | Support Load | Public Version | Private Version |
+|------|---------|--------|-------------|------------|--------------|---------------|----------------|
+| Risk Panel | Risk | Calculate lot size | VERY HIGH | LOW | LOW | Manual input | Broker-aware adaptive |
+| Daily Loss Guard | Risk | Stop trading after loss | VERY HIGH | LOW | LOW | Fixed threshold | Dynamic DD logic |
+| Profit Lock | Risk | Lock profits | HIGH | LOW | LOW | Fixed trigger | Adaptive trailing |
+| Exposure Meter | Risk | Show total risk | HIGH | MED | LOW | Basic sum | Portfolio-aware |
+| Trade Manager Lite | Management | Manage trades | VERY HIGH | MED | MED | Manual controls | Context-aware |
+| Breakeven Tool | Management | Move SL | HIGH | LOW | LOW | Fixed trigger | ATR/adaptive |
+| Partial Close Tool | Management | Close portions | HIGH | MED | LOW | Fixed levels | Dynamic distribution |
+| Trailing Tool | Management | Trail SL | HIGH | MED | MED | Fixed trail | Volatility-aware |
+| Exit Manager | Management | Multi TP exits | HIGH | MED | MED | Fixed targets | Adaptive |
+| Emergency Close Panel | Management | Close trades fast | VERY HIGH | LOW | LOW | Basic buttons | Conditional logic |
+| Order Panel | Execution | Fast entries | HIGH | LOW | LOW | Basic order | Smart routing |
+| Pending Assistant | Execution | Place pending orders | HIGH | MED | LOW | Simple placement | Template-based |
+| Timing Guard | Execution | Block bad times | HIGH | MED | LOW | Time filters | Multi-factor gating |
+| Session Clock | Session | Show sessions | VERY HIGH | LOW | LOW | Basic display | True session logic |
+| Session Guard | Session | Filter trading | HIGH | MED | LOW | Simple filter | Adaptive windows |
+| Spread Monitor | Execution | Show spread | VERY HIGH | LOW | LOW | Current spread | Anomaly detection |
+| Slippage Logger | Execution | Track slippage | MED | MED | LOW | Log only | Analytics engine |
+| Scanner Lite | Scanner | Basic scanning | HIGH | HIGH | MED | Simple filters | Full intelligence |
+| Volatility Scanner | Scanner | Find movement | HIGH | MED | LOW | ATR-based | Regime detection |
+| Alert Manager | Alerts | Alerts system | VERY HIGH | LOW | LOW | Simple alerts | Condition stacks |
+| News Guard | Alerts | Avoid news | HIGH | MED | MED | Manual windows | Event intelligence |
+| Dashboard Lite | HUD | Overview panel | VERY HIGH | MED | LOW | Basic stats | Full telemetry |
+| Symbol HUD | HUD | Symbol info | HIGH | MED | LOW | Simple stats | Full dossier |
+| Journal Exporter | Analytics | Export trades | VERY HIGH | LOW | LOW | CSV export | Enriched data |
+| Performance Analyzer | Analytics | Stats breakdown | HIGH | MED | LOW | Basic stats | Deep analytics |
+| Prop Rule Guard | Prop | Stay within rules | VERY HIGH | MED | LOW | Fixed rules | Dynamic engine |
+| Challenge Dashboard | Prop | Track challenge | HIGH | MED | LOW | Basic tracking | Scenario engine |
+| Multi Account Panel | Prop | Track accounts | MED | HIGH | HIGH | Manual tracking | Fleet management |
+| Checklist Panel | Discipline | Pre-trade checklist | HIGH | LOW | LOW | Manual checklist | Context-aware |
+| Cooldown Timer | Discipline | Prevent revenge trades | HIGH | LOW | LOW | Fixed timer | Adaptive |
+| Discipline Lock | Discipline | Lock trading | HIGH | MED | LOW | Manual lock | Behavior engine |
+| Chart Theme Pack | UX | Chart visuals | HIGH | LOW | LOW | Static themes | Dynamic UI |
+| Widget Pack | UX | Small HUD widgets | VERY HIGH | LOW | LOW | Standalone widgets | Integrated system |
+| Annotation Tool | UX | Mark charts | MED | LOW | LOW | Manual notes | Linked journaling |
+| Symbol Spec Viewer | Utility | Broker specs | MED | LOW | LOW | Static info | Normalized engine |
+| Margin Calculator | Utility | Margin estimate | HIGH | LOW | LOW | Simple calc | Portfolio-aware |
+| Runtime Health Panel | Utility | System health | MED | MED | LOW | Basic status | Full telemetry |
+| Setup Wizard | Educational | Guide setup | HIGH | LOW | LOW | Static wizard | Adaptive |
+| Strategy Builder | Educational | Build templates | MED | MED | MED | Template storage | System integration |
+
+---
+
+# PRODUCT PRIORITY ROADMAP
+
+## FIRST 10 (BUILD FIRST)
+1. Risk Panel  
+2. Daily Loss Guard  
+3. Trade Manager Lite  
+4. Breakeven Tool  
+5. Session Clock  
+6. Spread Monitor  
+7. Prop Rule Guard  
+8. Profit Tracker  
+9. Journal Exporter  
+10. Dashboard Lite  
+
+---
+
+# PRODUCT FAMILIES
+
+## Risk Suite
+- Risk Panel
+- Loss Guard
+- Profit Lock
+- Exposure Meter
+
+## Execution Suite
+- Trade Manager
+- Breakeven Tool
+- Exit Manager
+- Order Panel
+
+## Session Suite
+- Session Clock
+- Session Guard
+- Spread Monitor
+- Rollover Guard
+
+## Prop Suite
+- Rule Guard
+- Challenge Dashboard
+- Profit Tracker
+- Discipline Lock
+
+## Dashboard Suite
+- Trader HUD
+- Widget Pack
+- Symbol HUD
+- Performance Panel
+
+## Analytics Suite
+- Journal Exporter
+- Performance Analyzer
+- Screenshot Logger
+
+---
+
+# MASTER VS PUBLIC RULE
+
+## PUBLIC
+- Fixed logic
+- Manual control
+- Simple UI
+- Single function
+
+## PRIVATE
+- Adaptive logic
+- Cross-module awareness
+- Portfolio intelligence
+- Hidden execution layers
+
+---
+
+# COMMERCIAL STRATEGY
+
+## LEVEL 1 — SINGLE TOOLS
+- $5–$25
+- Simple utilities
+
+## LEVEL 2 — BUNDLES
+- $25–$75
+- Themed packs
+
+## LEVEL 3 — SUITES
+- $75–$150
+- Full systems
+
+---
+
+# GOLDEN RULE
+
+Public tools = **clean utility**
+
+Private system = **integrated intelligence**
+
+---
+
+# FINAL NOTE
+
+This is not a product list.
+
+This is a **scalable ecosystem blueprint**.
+
+Every feature you build for yourself:
+→ can become a product  
+→ can become a bundle  
+→ can become a suite  
+
+Without leaking your edge.
