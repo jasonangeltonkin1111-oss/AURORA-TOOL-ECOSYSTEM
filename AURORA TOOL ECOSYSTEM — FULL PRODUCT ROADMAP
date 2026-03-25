@@ -1,5 +1,7 @@
 # AURORA TOOL ECOSYSTEM — FULL PRODUCT ROADMAP
 
+# STRATEGY
+
 ## CORE DOCTRINE
 
 Build ONE private master system.
@@ -11,26 +13,26 @@ From that:
 
 ---
 
-# SYSTEM LAYERS
+## SYSTEM LAYERS
 
-## L1 — MASTER SYSTEM (PRIVATE ONLY)
+### L1 — MASTER SYSTEM (PRIVATE ONLY)
 - Full intelligence
 - Portfolio awareness
 - Adaptive logic
 - Prop firm orchestration
 - Hidden execution logic
 
-## L2 — PRIVATE PRO MODULES
+### L2 — PRIVATE PRO MODULES
 - Advanced tools
 - Potential future premium stripped products
 
-## L3 — PUBLIC UTILITY TOOLS
+### L3 — PUBLIC UTILITY TOOLS
 - Single-purpose
 - Easy to understand
 - Low support
 - Sellable
 
-## L4 — WRAPPERS / UX
+### L4 — WRAPPERS / UX
 - Dashboards
 - Panels
 - HUDs
@@ -38,7 +40,7 @@ From that:
 
 ---
 
-# TOOL ROADMAP TABLE
+## TOOL ROADMAP TABLE
 
 | Tool | Category | Purpose | Sellability | Difficulty | Support Load | Public Version | Private Version |
 |------|---------|--------|-------------|------------|--------------|---------------|----------------|
@@ -84,9 +86,9 @@ From that:
 
 ---
 
-# PRODUCT PRIORITY ROADMAP
+## PRODUCT PRIORITY ROADMAP
 
-## FIRST 10 (BUILD FIRST)
+### FIRST 10 (BUILD FIRST)
 1. Risk Panel  
 2. Daily Loss Guard  
 3. Trade Manager Lite  
@@ -100,54 +102,54 @@ From that:
 
 ---
 
-# PRODUCT FAMILIES
+## PRODUCT FAMILIES
 
-## Risk Suite
+### Risk Suite
 - Risk Panel
 - Loss Guard
 - Profit Lock
 - Exposure Meter
 
-## Execution Suite
+### Execution Suite
 - Trade Manager
 - Breakeven Tool
 - Exit Manager
 - Order Panel
 
-## Session Suite
+### Session Suite
 - Session Clock
 - Session Guard
 - Spread Monitor
 - Rollover Guard
 
-## Prop Suite
+### Prop Suite
 - Rule Guard
 - Challenge Dashboard
 - Profit Tracker
 - Discipline Lock
 
-## Dashboard Suite
+### Dashboard Suite
 - Trader HUD
 - Widget Pack
 - Symbol HUD
 - Performance Panel
 
-## Analytics Suite
+### Analytics Suite
 - Journal Exporter
 - Performance Analyzer
 - Screenshot Logger
 
 ---
 
-# MASTER VS PUBLIC RULE
+## MASTER VS PUBLIC RULE
 
-## PUBLIC
+### PUBLIC
 - Fixed logic
 - Manual control
 - Simple UI
 - Single function
 
-## PRIVATE
+### PRIVATE
 - Adaptive logic
 - Cross-module awareness
 - Portfolio intelligence
@@ -155,23 +157,23 @@ From that:
 
 ---
 
-# COMMERCIAL STRATEGY
+## COMMERCIAL STRATEGY
 
-## LEVEL 1 — SINGLE TOOLS
+### LEVEL 1 — SINGLE TOOLS
 - $5–$25
 - Simple utilities
 
-## LEVEL 2 — BUNDLES
+### LEVEL 2 — BUNDLES
 - $25–$75
 - Themed packs
 
-## LEVEL 3 — SUITES
+### LEVEL 3 — SUITES
 - $75–$150
 - Full systems
 
 ---
 
-# GOLDEN RULE
+## GOLDEN RULE
 
 Public tools = **clean utility**
 
@@ -179,7 +181,7 @@ Private system = **integrated intelligence**
 
 ---
 
-# FINAL NOTE
+## FINAL NOTE
 
 This is not a product list.
 
@@ -191,3 +193,413 @@ Every feature you build for yourself:
 → can become a suite  
 
 Without leaking your edge.
+
+---
+
+# IMPLEMENTATION
+
+## TOOL CREATION OPERATING MODEL
+
+### Objective (user problem + value)
+Define the specific trader pain point each tool removes and the measurable value created (fewer violations, faster execution, lower cognitive load).
+
+### Inputs (manual, broker, account, session, market)
+- **Manual:** user toggles, thresholds, profile presets
+- **Broker:** symbol specs, margin requirements, fill/latency feedback
+- **Account:** balance, equity, drawdown, open exposure, daily P/L
+- **Session:** session state, rollover windows, restricted windows
+- **Market:** spread, volatility proxy, price state, news/session anomalies
+
+### Outputs (UI elements, alerts, state changes, logs)
+- **UI elements:** panels, badges, tooltips, warnings, lock indicators
+- **Alerts:** inline warnings, modal blocks, sound/push notifications
+- **State changes:** enable/disable trading actions, SL/TP updates, guard locks
+- **Logs:** structured event logs with timestamp, symbol, account, action, reason
+
+### Constraints (prop limits, broker variation, latency, offline behavior)
+- Enforce hard stop behavior for prop constraints before execution confirmation
+- Handle broker-specific precision, minimum lot, and order rule differences
+- Avoid blocking UI under latency spikes; degrade with queued or retried actions
+- Provide deterministic offline behavior: local cache, safe defaults, no hidden execution
+
+### Dependencies (shared modules + external services, if any)
+- **Shared modules:** risk engine, rule engine, session service, alert bus, telemetry client, profile manager
+- **External services (optional):** broker API, economic calendar feed, cloud analytics sink
+
+### Failure modes + fallbacks
+- Broker/API unavailable → read-only mode + queued intent log
+- Missing/invalid account data → lock critical actions + prompt user to resync
+- Latency timeout → cancel action and expose retry with explicit status
+- Rule conflict between modules → strictest rule wins and log conflict context
+
+### Acceptance criteria (testable)
+- Every decision path has deterministic outputs for same input snapshot
+- Guard tools block forbidden actions in <200 ms local decision time
+- All user-facing errors include clear remediation copy
+- Log payloads are schema-valid and replayable in test harness
+
+### Telemetry/events (what to log)
+- `tool_opened`, `tool_action_submitted`, `tool_action_blocked`, `tool_action_applied`
+- `rule_evaluated`, `rule_violation_detected`, `fallback_activated`
+- `data_sync_started`, `data_sync_failed`, `data_sync_recovered`
+
+### Versioning/release policy (alpha/beta/stable)
+- **Alpha:** internal/private only; rapid iteration; feature flags required
+- **Beta:** limited cohort; backward-compatible settings migration required
+- **Stable:** public release; changelog + semantic version + rollback plan required
+
+---
+
+## SUITE IMPLEMENTATION PLANNING AREAS
+
+### Risk Suite — IMPLEMENTATION SPEC
+#### Objective (user problem + value)
+Prevent over-risking and drawdown breaches while reducing manual calculation errors.
+
+#### Inputs (manual, broker, account, session, market)
+Risk %, max daily loss, account equity, broker lot step/min lot, current spread.
+
+#### Outputs (UI elements, alerts, state changes, logs)
+Lot size calculator UI, max-loss warning, trade-block state when limits exceed, risk-evaluation logs.
+
+#### Constraints (prop limits, broker variation, latency, offline behavior)
+Must respect per-broker position sizing rules and prop daily/max drawdown limits.
+
+#### Dependencies (shared modules + external services, if any)
+Risk engine, account snapshot service, broker symbol-spec module.
+
+#### Failure modes + fallbacks
+If symbol spec unavailable, fallback to safe minimum lot and warning banner.
+
+#### Acceptance criteria (testable)
+Given fixed inputs, calculated lot size matches expected output within precision rules.
+
+#### Telemetry/events (what to log)
+`risk_calc_requested`, `risk_calc_completed`, `risk_block_triggered`.
+
+#### Versioning/release policy (alpha/beta/stable)
+Alpha internal validation with multiple brokers, beta with selected users, stable after support tickets < threshold.
+
+### Execution Suite — IMPLEMENTATION SPEC
+#### Objective (user problem + value)
+Speed up trade management while preventing accidental rule-violating actions.
+
+#### Inputs (manual, broker, account, session, market)
+Order action intent, open positions, broker execution rules, spread/volatility state.
+
+#### Outputs (UI elements, alerts, state changes, logs)
+Action buttons, confirmation states, execution status toasts, audit trail entries.
+
+#### Constraints (prop limits, broker variation, latency, offline behavior)
+No execution action can bypass guard checks; must timeout safely on slow broker response.
+
+#### Dependencies (shared modules + external services, if any)
+Execution gateway, guard middleware, broker adapter.
+
+#### Failure modes + fallbacks
+On rejected modification, revert UI state and provide reason code + retry option.
+
+#### Acceptance criteria (testable)
+SL/TP/partial-close actions produce correct broker payload and post-state reconciliation.
+
+#### Telemetry/events (what to log)
+`exec_action_requested`, `exec_action_rejected`, `exec_action_confirmed`.
+
+#### Versioning/release policy (alpha/beta/stable)
+Alpha feature-flagged controls, beta partial rollout, stable after broker compatibility matrix passes.
+
+### Session Suite — IMPLEMENTATION SPEC
+#### Objective (user problem + value)
+Keep traders aligned with valid sessions and avoid poor-liquidity windows.
+
+#### Inputs (manual, broker, account, session, market)
+Timezone settings, session templates, spread, rollover windows.
+
+#### Outputs (UI elements, alerts, state changes, logs)
+Session clock HUD, session-open/close alerts, session-based trade gating state.
+
+#### Constraints (prop limits, broker variation, latency, offline behavior)
+Session logic must remain accurate across DST/timezone transitions.
+
+#### Dependencies (shared modules + external services, if any)
+Session calendar module, time service, spread feed.
+
+#### Failure modes + fallbacks
+If time source desync detected, fallback to local clock and show drift warning.
+
+#### Acceptance criteria (testable)
+Session transitions trigger exactly once per configured boundary.
+
+#### Telemetry/events (what to log)
+`session_state_changed`, `session_guard_blocked`, `clock_drift_detected`.
+
+#### Versioning/release policy (alpha/beta/stable)
+Alpha on major symbols only, beta with timezone edge-case monitoring, stable after DST validation cycle.
+
+### Prop Suite — IMPLEMENTATION SPEC
+#### Objective (user problem + value)
+Reduce prop-rule breaches and improve challenge completion reliability.
+
+#### Inputs (manual, broker, account, session, market)
+Rule profile, account equity/drawdown, daily P/L, position exposure, trading window.
+
+#### Outputs (UI elements, alerts, state changes, logs)
+Rule status dashboard, hard-stop alerts, account lock/soft lock state, violation logs.
+
+#### Constraints (prop limits, broker variation, latency, offline behavior)
+Strictest prop rule always wins; no hidden override path in public versions.
+
+#### Dependencies (shared modules + external services, if any)
+Rule engine, account state service, challenge progress tracker.
+
+#### Failure modes + fallbacks
+If rule profile incomplete, switch to conservative default profile and require user confirmation.
+
+#### Acceptance criteria (testable)
+Known violation scenarios always produce pre-trade block and post-event record.
+
+#### Telemetry/events (what to log)
+`prop_rule_loaded`, `prop_rule_blocked_trade`, `prop_violation_prevented`.
+
+#### Versioning/release policy (alpha/beta/stable)
+Alpha internal with synthetic scenarios, beta with multiple prop templates, stable after scenario suite reaches 100% pass.
+
+### Dashboard Suite — IMPLEMENTATION SPEC
+#### Objective (user problem + value)
+Provide at-a-glance operational clarity with minimal click depth.
+
+#### Inputs (manual, broker, account, session, market)
+User widget config, account KPIs, active symbol state, session/guard status.
+
+#### Outputs (UI elements, alerts, state changes, logs)
+Dashboard cards/widgets, status badges, quick alerts, layout state persistence logs.
+
+#### Constraints (prop limits, broker variation, latency, offline behavior)
+Must remain responsive under high event volume; render fallback placeholders when data missing.
+
+#### Dependencies (shared modules + external services, if any)
+UI component library, telemetry stream, state store.
+
+#### Failure modes + fallbacks
+If one widget fails, isolate error and keep remaining dashboard operational.
+
+#### Acceptance criteria (testable)
+Dashboard first paint and critical status cards render within agreed performance budget.
+
+#### Telemetry/events (what to log)
+`dashboard_loaded`, `widget_render_failed`, `layout_updated`.
+
+#### Versioning/release policy (alpha/beta/stable)
+Alpha with core widgets, beta with extension widgets, stable after UI performance and crash thresholds met.
+
+### Analytics Suite — IMPLEMENTATION SPEC
+#### Objective (user problem + value)
+Turn trading activity into actionable review data with low export friction.
+
+#### Inputs (manual, broker, account, session, market)
+Trade history, execution metadata, account snapshots, optional user tags/notes.
+
+#### Outputs (UI elements, alerts, state changes, logs)
+Export controls, performance summary charts, completed-export notifications, processing logs.
+
+#### Constraints (prop limits, broker variation, latency, offline behavior)
+Exports must normalize broker field differences and avoid blocking primary trading workflows.
+
+#### Dependencies (shared modules + external services, if any)
+Trade history service, normalization layer, export formatter.
+
+#### Failure modes + fallbacks
+If export format fails, fallback to raw CSV with explicit schema notice.
+
+#### Acceptance criteria (testable)
+Exported files pass schema checks and match on-screen summary totals.
+
+#### Telemetry/events (what to log)
+`export_started`, `export_completed`, `export_failed`, `analytics_view_opened`.
+
+#### Versioning/release policy (alpha/beta/stable)
+Alpha for internal journaling, beta with external user samples, stable after export compatibility verification.
+
+---
+
+## FIRST 10 (BUILD FIRST) — COMPACT SPEC CARDS
+
+### 1) Risk Panel
+- **Objective:** Fast, accurate lot sizing to prevent over-risking.
+- **Inputs:** Manual risk %, account equity, broker lot rules, spread.
+- **Outputs:** Lot size UI, warning badge, risk decision log.
+- **Constraints:** Precision/lot-step rules by broker; prop risk limits.
+- **Dependencies:** Risk engine, symbol spec module.
+- **Failure modes + fallbacks:** Missing specs -> safe minimum lot + warning.
+- **Acceptance criteria:** Deterministic lot output for fixed snapshots.
+- **Telemetry/events:** `risk_calc_requested`, `risk_calc_completed`.
+- **Versioning/release policy:** Alpha internal -> beta cohort -> stable public.
+
+**Definition of Done**
+- [ ] UX complete
+- [ ] Rule logic validated
+- [ ] Error handling included
+- [ ] Logging included
+- [ ] Public/private split validated
+
+### 2) Daily Loss Guard
+- **Objective:** Stop trading once daily loss threshold is reached.
+- **Inputs:** Daily P/L, equity baseline, user threshold, prop template.
+- **Outputs:** Threshold meter, block alert, trade-lock state.
+- **Constraints:** Must evaluate before every execution action.
+- **Dependencies:** P/L tracker, rule engine.
+- **Failure modes + fallbacks:** Missing P/L stream -> conservative lock + resync prompt.
+- **Acceptance criteria:** Simulated threshold breach always blocks new trades.
+- **Telemetry/events:** `daily_loss_check`, `daily_loss_lock_triggered`.
+- **Versioning/release policy:** Alpha with synthetic tests, beta live shadow mode, stable after incident-free window.
+
+**Definition of Done**
+- [ ] UX complete
+- [ ] Rule logic validated
+- [ ] Error handling included
+- [ ] Logging included
+- [ ] Public/private split validated
+
+### 3) Trade Manager Lite
+- **Objective:** One-click SL/TP/partial updates with controlled risk.
+- **Inputs:** Open positions, action intent, broker modify rules.
+- **Outputs:** Control panel, action confirmations, update logs.
+- **Constraints:** No action bypasses active guards.
+- **Dependencies:** Execution gateway, guard middleware.
+- **Failure modes + fallbacks:** Rejection -> rollback UI + clear retry path.
+- **Acceptance criteria:** State reconciliation matches broker-confirmed order state.
+- **Telemetry/events:** `tm_action_requested`, `tm_action_applied`.
+- **Versioning/release policy:** Alpha feature flags, beta partial rollout, stable after broker matrix pass.
+
+**Definition of Done**
+- [ ] UX complete
+- [ ] Rule logic validated
+- [ ] Error handling included
+- [ ] Logging included
+- [ ] Public/private split validated
+
+### 4) Breakeven Tool
+- **Objective:** Move SL to breakeven reliably at configured trigger.
+- **Inputs:** Entry price, position size, trigger rule, spread buffer.
+- **Outputs:** Breakeven status tag, applied/failed notification, audit log.
+- **Constraints:** Broker min stop distance and freeze level.
+- **Dependencies:** Position service, broker adapter.
+- **Failure modes + fallbacks:** Invalid stop distance -> queue retry with adjusted buffer guidance.
+- **Acceptance criteria:** Trigger conditions move SL exactly once per position state.
+- **Telemetry/events:** `breakeven_triggered`, `breakeven_applied`, `breakeven_failed`.
+- **Versioning/release policy:** Alpha on major FX pairs, beta multi-asset, stable after edge-case pass.
+
+**Definition of Done**
+- [ ] UX complete
+- [ ] Rule logic validated
+- [ ] Error handling included
+- [ ] Logging included
+- [ ] Public/private split validated
+
+### 5) Session Clock
+- **Objective:** Show actionable session context in real time.
+- **Inputs:** Timezone config, session templates, clock source.
+- **Outputs:** Clock widget, session state badges, transition alerts.
+- **Constraints:** DST-safe transitions; low drift tolerance.
+- **Dependencies:** Session calendar, time sync service.
+- **Failure modes + fallbacks:** Time drift -> local fallback + drift warning.
+- **Acceptance criteria:** Session boundary events fire once and at correct local time.
+- **Telemetry/events:** `session_tick`, `session_boundary_crossed`.
+- **Versioning/release policy:** Alpha core regions, beta broader timezone set, stable after DST cycle.
+
+**Definition of Done**
+- [ ] UX complete
+- [ ] Rule logic validated
+- [ ] Error handling included
+- [ ] Logging included
+- [ ] Public/private split validated
+
+### 6) Spread Monitor
+- **Objective:** Warn against high-cost entries during spread anomalies.
+- **Inputs:** Live spread, baseline spread model, symbol context.
+- **Outputs:** Spread gauge, anomaly alert, optional action block.
+- **Constraints:** Broker quote precision and feed delays.
+- **Dependencies:** Market data feed, alert bus.
+- **Failure modes + fallbacks:** Feed stale -> mark stale state and disable anomaly decisions.
+- **Acceptance criteria:** Known anomaly replay triggers alert within configured threshold.
+- **Telemetry/events:** `spread_sampled`, `spread_anomaly_detected`.
+- **Versioning/release policy:** Alpha alert-only, beta optional block mode, stable after false-positive tuning.
+
+**Definition of Done**
+- [ ] UX complete
+- [ ] Rule logic validated
+- [ ] Error handling included
+- [ ] Logging included
+- [ ] Public/private split validated
+
+### 7) Prop Rule Guard
+- **Objective:** Block trades/actions that violate challenge rules.
+- **Inputs:** Prop rule profile, account state, pending trade intent.
+- **Outputs:** Rule compliance panel, block reason modal, violation-prevented logs.
+- **Constraints:** Strictest rule precedence; no silent override.
+- **Dependencies:** Rule engine, account tracker.
+- **Failure modes + fallbacks:** Unknown rule field -> conservative enforcement + operator notice.
+- **Acceptance criteria:** Scenario suite for each rule type reaches full pass.
+- **Telemetry/events:** `prop_check_started`, `prop_trade_blocked`, `prop_check_passed`.
+- **Versioning/release policy:** Alpha internal templates, beta common prop firms, stable post validation suite.
+
+**Definition of Done**
+- [ ] UX complete
+- [ ] Rule logic validated
+- [ ] Error handling included
+- [ ] Logging included
+- [ ] Public/private split validated
+
+### 8) Profit Tracker
+- **Objective:** Track intraday/period progress toward targets.
+- **Inputs:** Closed P/L, floating P/L, target settings, session boundaries.
+- **Outputs:** Progress bar/cards, target-hit alerts, state snapshots.
+- **Constraints:** Must avoid double-counting on partial closes.
+- **Dependencies:** P/L aggregation service, dashboard widgets.
+- **Failure modes + fallbacks:** Data gap -> show incomplete-state badge + refresh action.
+- **Acceptance criteria:** Totals reconcile with account history across reloads.
+- **Telemetry/events:** `profit_snapshot_updated`, `profit_target_hit`.
+- **Versioning/release policy:** Alpha read-only metrics, beta target alerts, stable after reconciliation tests.
+
+**Definition of Done**
+- [ ] UX complete
+- [ ] Rule logic validated
+- [ ] Error handling included
+- [ ] Logging included
+- [ ] Public/private split validated
+
+### 9) Journal Exporter
+- **Objective:** Export clean, analysis-ready trade records quickly.
+- **Inputs:** Trade history range, field selection, export format.
+- **Outputs:** Export UI, completed file artifact, export logs.
+- **Constraints:** Must normalize broker-specific fields.
+- **Dependencies:** Trade history service, normalization layer, file formatter.
+- **Failure modes + fallbacks:** Format failure -> fallback raw CSV.
+- **Acceptance criteria:** Export schema validates and row counts match source.
+- **Telemetry/events:** `journal_export_started`, `journal_export_completed`, `journal_export_failed`.
+- **Versioning/release policy:** Alpha CSV only, beta XLSX/JSON options, stable after compatibility checks.
+
+**Definition of Done**
+- [ ] UX complete
+- [ ] Rule logic validated
+- [ ] Error handling included
+- [ ] Logging included
+- [ ] Public/private split validated
+
+### 10) Dashboard Lite
+- **Objective:** Centralize core account and guard status in one view.
+- **Inputs:** Account KPIs, guard state, session state, user layout prefs.
+- **Outputs:** KPI cards, status badges, widget updates, layout logs.
+- **Constraints:** Maintain responsiveness under frequent updates.
+- **Dependencies:** UI component library, state store, telemetry client.
+- **Failure modes + fallbacks:** Widget failure isolated with placeholder card.
+- **Acceptance criteria:** Critical status cards render and refresh within performance budget.
+- **Telemetry/events:** `dashboard_opened`, `dashboard_widget_refreshed`, `dashboard_widget_failed`.
+- **Versioning/release policy:** Alpha core cards, beta configurable widgets, stable after perf/error thresholds.
+
+**Definition of Done**
+- [ ] UX complete
+- [ ] Rule logic validated
+- [ ] Error handling included
+- [ ] Logging included
+- [ ] Public/private split validated
