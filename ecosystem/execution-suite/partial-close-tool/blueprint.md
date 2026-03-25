@@ -1,0 +1,1 @@
+# Partial Close Tool Blueprint

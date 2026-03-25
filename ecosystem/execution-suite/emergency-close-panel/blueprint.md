@@ -1,0 +1,1 @@
+# Emergency Close Panel Blueprint
