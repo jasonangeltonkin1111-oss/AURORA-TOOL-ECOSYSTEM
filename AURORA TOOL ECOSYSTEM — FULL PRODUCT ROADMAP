@@ -40,49 +40,49 @@ From that:
 
 ---
 
-## TOOL ROADMAP TABLE
+## TOOL ROADMAP TABLE (CANONICAL SOURCE OF TRUTH)
 
-| Tool | Category | Purpose | Sellability | Difficulty | Support Load | Public Version | Private Version |
-|------|---------|--------|-------------|------------|--------------|---------------|----------------|
-| Risk Panel | Risk | Calculate lot size | VERY HIGH | LOW | LOW | Manual input | Broker-aware adaptive |
-| Daily Loss Guard | Risk | Stop trading after loss | VERY HIGH | LOW | LOW | Fixed threshold | Dynamic DD logic |
-| Profit Lock | Risk | Lock profits | HIGH | LOW | LOW | Fixed trigger | Adaptive trailing |
-| Exposure Meter | Risk | Show total risk | HIGH | MED | LOW | Basic sum | Portfolio-aware |
-| Trade Manager Lite | Management | Manage trades | VERY HIGH | MED | MED | Manual controls | Context-aware |
-| Breakeven Tool | Management | Move SL | HIGH | LOW | LOW | Fixed trigger | ATR/adaptive |
-| Partial Close Tool | Management | Close portions | HIGH | MED | LOW | Fixed levels | Dynamic distribution |
-| Trailing Tool | Management | Trail SL | HIGH | MED | MED | Fixed trail | Volatility-aware |
-| Exit Manager | Management | Multi TP exits | HIGH | MED | MED | Fixed targets | Adaptive |
-| Emergency Close Panel | Management | Close trades fast | VERY HIGH | LOW | LOW | Basic buttons | Conditional logic |
-| Order Panel | Execution | Fast entries | HIGH | LOW | LOW | Basic order | Smart routing |
-| Pending Assistant | Execution | Place pending orders | HIGH | MED | LOW | Simple placement | Template-based |
-| Timing Guard | Execution | Block bad times | HIGH | MED | LOW | Time filters | Multi-factor gating |
-| Session Clock | Session | Show sessions | VERY HIGH | LOW | LOW | Basic display | True session logic |
-| Session Guard | Session | Filter trading | HIGH | MED | LOW | Simple filter | Adaptive windows |
-| Spread Monitor | Execution | Show spread | VERY HIGH | LOW | LOW | Current spread | Anomaly detection |
-| Slippage Logger | Execution | Track slippage | MED | MED | LOW | Log only | Analytics engine |
-| Scanner Lite | Scanner | Basic scanning | HIGH | HIGH | MED | Simple filters | Full intelligence |
-| Volatility Scanner | Scanner | Find movement | HIGH | MED | LOW | ATR-based | Regime detection |
-| Alert Manager | Alerts | Alerts system | VERY HIGH | LOW | LOW | Simple alerts | Condition stacks |
-| News Guard | Alerts | Avoid news | HIGH | MED | MED | Manual windows | Event intelligence |
-| Dashboard Lite | HUD | Overview panel | VERY HIGH | MED | LOW | Basic stats | Full telemetry |
-| Symbol HUD | HUD | Symbol info | HIGH | MED | LOW | Simple stats | Full dossier |
-| Journal Exporter | Analytics | Export trades | VERY HIGH | LOW | LOW | CSV export | Enriched data |
-| Performance Analyzer | Analytics | Stats breakdown | HIGH | MED | LOW | Basic stats | Deep analytics |
-| Prop Rule Guard | Prop | Stay within rules | VERY HIGH | MED | LOW | Fixed rules | Dynamic engine |
-| Challenge Dashboard | Prop | Track challenge | HIGH | MED | LOW | Basic tracking | Scenario engine |
-| Multi Account Panel | Prop | Track accounts | MED | HIGH | HIGH | Manual tracking | Fleet management |
-| Checklist Panel | Discipline | Pre-trade checklist | HIGH | LOW | LOW | Manual checklist | Context-aware |
-| Cooldown Timer | Discipline | Prevent revenge trades | HIGH | LOW | LOW | Fixed timer | Adaptive |
-| Discipline Lock | Discipline | Lock trading | HIGH | MED | LOW | Manual lock | Behavior engine |
-| Chart Theme Pack | UX | Chart visuals | HIGH | LOW | LOW | Static themes | Dynamic UI |
-| Widget Pack | UX | Small HUD widgets | VERY HIGH | LOW | LOW | Standalone widgets | Integrated system |
-| Annotation Tool | UX | Mark charts | MED | LOW | LOW | Manual notes | Linked journaling |
-| Symbol Spec Viewer | Utility | Broker specs | MED | LOW | LOW | Static info | Normalized engine |
-| Margin Calculator | Utility | Margin estimate | HIGH | LOW | LOW | Simple calc | Portfolio-aware |
-| Runtime Health Panel | Utility | System health | MED | MED | LOW | Basic status | Full telemetry |
-| Setup Wizard | Educational | Guide setup | HIGH | LOW | LOW | Static wizard | Adaptive |
-| Strategy Builder | Educational | Build templates | MED | MED | MED | Template storage | System integration |
+| Tool | Category | Purpose | Sellability | Difficulty | Support Load | Public Version | Private Version | Destination Folder |
+|------|---------|--------|-------------|------------|--------------|---------------|----------------|--------------------|
+| Risk Panel | Risk | Calculate lot size | VERY HIGH | LOW | LOW | Manual input | Broker-aware adaptive | `ecosystem/risk-suite/risk-panel/` |
+| Daily Loss Guard | Risk | Stop trading after loss | VERY HIGH | LOW | LOW | Fixed threshold | Dynamic DD logic | `ecosystem/risk-suite/daily-loss-guard/` |
+| Profit Lock | Risk | Lock profits | HIGH | LOW | LOW | Fixed trigger | Adaptive trailing | `ecosystem/risk-suite/profit-lock/` |
+| Exposure Meter | Risk | Show total risk | HIGH | MED | LOW | Basic sum | Portfolio-aware | `ecosystem/risk-suite/exposure-meter/` |
+| Trade Manager Lite | Management | Manage trades | VERY HIGH | MED | MED | Manual controls | Context-aware | `ecosystem/execution-suite/trade-manager-lite/` |
+| Breakeven Tool | Management | Move SL | HIGH | LOW | LOW | Fixed trigger | ATR/adaptive | `ecosystem/execution-suite/breakeven-tool/` |
+| Partial Close Tool | Management | Close portions | HIGH | MED | LOW | Fixed levels | Dynamic distribution | `ecosystem/execution-suite/partial-close-tool/` |
+| Trailing Tool | Management | Trail SL | HIGH | MED | MED | Fixed trail | Volatility-aware | `ecosystem/execution-suite/trailing-tool/` |
+| Exit Manager | Management | Multi TP exits | HIGH | MED | MED | Fixed targets | Adaptive | `ecosystem/execution-suite/exit-manager/` |
+| Emergency Close Panel | Management | Close trades fast | VERY HIGH | LOW | LOW | Basic buttons | Conditional logic | `ecosystem/execution-suite/emergency-close-panel/` |
+| Order Panel | Execution | Fast entries | HIGH | LOW | LOW | Basic order | Smart routing | `ecosystem/execution-suite/order-panel/` |
+| Pending Assistant | Execution | Place pending orders | HIGH | MED | LOW | Simple placement | Template-based | `ecosystem/execution-suite/pending-assistant/` |
+| Timing Guard | Execution | Block bad times | HIGH | MED | LOW | Time filters | Multi-factor gating | `ecosystem/execution-suite/timing-guard/` |
+| Session Clock | Session | Show sessions | VERY HIGH | LOW | LOW | Basic display | True session logic | `ecosystem/session-suite/session-clock/` |
+| Session Guard | Session | Filter trading | HIGH | MED | LOW | Simple filter | Adaptive windows | `ecosystem/session-suite/session-guard/` |
+| Spread Monitor | Execution | Show spread | VERY HIGH | LOW | LOW | Current spread | Anomaly detection | `ecosystem/execution-suite/spread-monitor/` |
+| Slippage Logger | Execution | Track slippage | MED | MED | LOW | Log only | Analytics engine | `ecosystem/execution-suite/slippage-logger/` |
+| Scanner Lite | Scanner | Basic scanning | HIGH | HIGH | MED | Simple filters | Full intelligence | `ecosystem/execution-suite/scanner-lite/` |
+| Volatility Scanner | Scanner | Find movement | HIGH | MED | LOW | ATR-based | Regime detection | `ecosystem/execution-suite/volatility-scanner/` |
+| Alert Manager | Alerts | Alerts system | VERY HIGH | LOW | LOW | Simple alerts | Condition stacks | `ecosystem/dashboard-suite/alert-manager/` |
+| News Guard | Alerts | Avoid news | HIGH | MED | MED | Manual windows | Event intelligence | `ecosystem/dashboard-suite/news-guard/` |
+| Dashboard Lite | HUD | Overview panel | VERY HIGH | MED | LOW | Basic stats | Full telemetry | `ecosystem/dashboard-suite/dashboard-lite/` |
+| Symbol HUD | HUD | Symbol info | HIGH | MED | LOW | Simple stats | Full dossier | `ecosystem/dashboard-suite/symbol-hud/` |
+| Journal Exporter | Analytics | Export trades | VERY HIGH | LOW | LOW | CSV export | Enriched data | `ecosystem/analytics-suite/journal-exporter/` |
+| Performance Analyzer | Analytics | Stats breakdown | HIGH | MED | LOW | Basic stats | Deep analytics | `ecosystem/analytics-suite/performance-analyzer/` |
+| Prop Rule Guard | Prop | Stay within rules | VERY HIGH | MED | LOW | Fixed rules | Dynamic engine | `ecosystem/prop-suite/prop-rule-guard/` |
+| Challenge Dashboard | Prop | Track challenge | HIGH | MED | LOW | Basic tracking | Scenario engine | `ecosystem/prop-suite/challenge-dashboard/` |
+| Multi Account Panel | Prop | Track accounts | MED | HIGH | HIGH | Manual tracking | Fleet management | `ecosystem/prop-suite/multi-account-panel/` |
+| Checklist Panel | Discipline | Pre-trade checklist | HIGH | LOW | LOW | Manual checklist | Context-aware | `ecosystem/discipline-suite/checklist-panel/` |
+| Cooldown Timer | Discipline | Prevent revenge trades | HIGH | LOW | LOW | Fixed timer | Adaptive | `ecosystem/discipline-suite/cooldown-timer/` |
+| Discipline Lock | Discipline | Lock trading | HIGH | MED | LOW | Manual lock | Behavior engine | `ecosystem/discipline-suite/discipline-lock/` |
+| Chart Theme Pack | UX | Chart visuals | HIGH | LOW | LOW | Static themes | Dynamic UI | `ecosystem/ux-suite/chart-theme-pack/` |
+| Widget Pack | UX | Small HUD widgets | VERY HIGH | LOW | LOW | Standalone widgets | Integrated system | `ecosystem/ux-suite/widget-pack/` |
+| Annotation Tool | UX | Mark charts | MED | LOW | LOW | Manual notes | Linked journaling | `ecosystem/ux-suite/annotation-tool/` |
+| Symbol Spec Viewer | Utility | Broker specs | MED | LOW | LOW | Static info | Normalized engine | `ecosystem/utility-suite/symbol-spec-viewer/` |
+| Margin Calculator | Utility | Margin estimate | HIGH | LOW | LOW | Simple calc | Portfolio-aware | `ecosystem/utility-suite/margin-calculator/` |
+| Runtime Health Panel | Utility | System health | MED | MED | LOW | Basic status | Full telemetry | `ecosystem/utility-suite/runtime-health-panel/` |
+| Setup Wizard | Educational | Guide setup | HIGH | LOW | LOW | Static wizard | Adaptive | `ecosystem/education-suite/setup-wizard/` |
+| Strategy Builder | Educational | Build templates | MED | MED | MED | Template storage | System integration | `ecosystem/education-suite/strategy-builder/` |
 
 ---
 
@@ -96,7 +96,7 @@ From that:
 5. Session Clock  
 6. Spread Monitor  
 7. Prop Rule Guard  
-8. Profit Tracker  
+8. Profit Lock  
 9. Journal Exporter  
 10. Dashboard Lite  
 
@@ -106,38 +106,62 @@ From that:
 
 ### Risk Suite
 - Risk Panel
-- Loss Guard
+- Daily Loss Guard
 - Profit Lock
 - Exposure Meter
 
 ### Execution Suite
-- Trade Manager
+- Trade Manager Lite
 - Breakeven Tool
+- Partial Close Tool
+- Trailing Tool
 - Exit Manager
+- Emergency Close Panel
 - Order Panel
+- Pending Assistant
+- Timing Guard
+- Spread Monitor
+- Slippage Logger
+- Scanner Lite
+- Volatility Scanner
 
 ### Session Suite
 - Session Clock
 - Session Guard
-- Spread Monitor
-- Rollover Guard
 
 ### Prop Suite
-- Rule Guard
+- Prop Rule Guard
 - Challenge Dashboard
-- Profit Tracker
-- Discipline Lock
+- Multi Account Panel
 
 ### Dashboard Suite
-- Trader HUD
-- Widget Pack
+- Alert Manager
+- News Guard
+- Dashboard Lite
 - Symbol HUD
-- Performance Panel
 
 ### Analytics Suite
 - Journal Exporter
 - Performance Analyzer
-- Screenshot Logger
+
+### Discipline Suite
+- Checklist Panel
+- Cooldown Timer
+- Discipline Lock
+
+### UX Suite
+- Chart Theme Pack
+- Widget Pack
+- Annotation Tool
+
+### Utility Suite
+- Symbol Spec Viewer
+- Margin Calculator
+- Runtime Health Panel
+
+### Education Suite
+- Setup Wizard
+- Strategy Builder
 
 ---
 
